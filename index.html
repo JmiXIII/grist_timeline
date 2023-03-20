@@ -32,13 +32,13 @@
     }
 
     // Fetch the data from the document
-    api.fetchRecords('Animals').then(data => {
+    grist.fetchRecords('Animals').then(data => {
       plotData(data);
     });
 
     // Listen for data changes and update the plot
-    api.onRecordsChanged('Animals', (changes) => {
-      api.fetchRecords('Animals').then(data => {
+    grist.onRecordsChanged('Animals', (changes) => {
+      grist.fetchRecords('Animals').then(data => {
         plotData(data);
       });
     });
