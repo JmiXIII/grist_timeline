@@ -4,7 +4,35 @@
   <script src="https://widget.getgrist.com/grist-widget-api.js"></script>
 </head>
 <body>
-  2nd Try !
-  <div id="myDiv">Try for plotly</div>
+  Test
+  <div id="myDiv"></div>
+  <script>
+    // Initialize the widget API
+    var api = new GristWidget.API();
+
+    // Define a function to plot the data
+    function plotData(data) {
+      var x = data.map(row => row.name);
+      var y = data.map(row => row.count);
+      var trace = {
+        x: x,
+        y: y,
+        type: 'bar'
+      };
+      Plotly.newPlot('myDiv', [trace]);
+    }
+
+    // Fetch the data from the document
+    api.fetchRecords('Animals').then(data => {
+      plotData(data);
+    });
+
+    // Listen for data changes and update the plot
+    api.onRecordsChanged('Animals', (changes) => {
+      api.fetchRecords('Animals').then(data => {
+        plotData(data);
+      });
+    });
+  </script>
 </body>
 </html>
