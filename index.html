@@ -15,7 +15,7 @@
       grist.ready(() => {
         // Get the tableId for a table named "MyTable"
         const tableId = grist.docList.find(table => table.name === 'Animals').tableId;
-
+        console.log("start")
         // Select all the records in the "myDataColumn" column and store them in an array
         const records = grist.tables[tableId].getRecords().map(record => record.myDataColumn);
         console.log("records --> " + records)
