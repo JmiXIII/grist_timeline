@@ -21,7 +21,6 @@
       // const tableId = grist.docList.find(table => table.name === 'Animals').tableId;
 
       // When the table is loaded or updated, render a chart based on the column data
-      grist.onTable(function() {
         // Extract the data you need from the Grist column object
         const data = grist.tables['Animals'].getColumn('myDataColumn').filter((value) => value !== null);
 
@@ -42,7 +41,6 @@
 
       // Create the chart using Plotly.js
       Plotly.newPlot('chart-container', [trace], layout);
-    });
   </script>
 </body>
 
