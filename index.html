@@ -1,44 +1,48 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>My Grist Chart Widget</title>
-    <!-- Include Plotly.js library -->
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
-  </head>
-  <body>
-    <!-- Create a container element for the chart -->
-    <div id="chart-container"></div>
-    <script>
-      // Wait for the Grist API to be ready
-      grist.ready();
 
-      // When a new record is selected in the Grist table, render a chart based on its data
-      grist.onRecord(function(record) {
-        // Extract the data you need from the Grist record object
-        const data = record.myDataColumn;
+<head>
+  <meta charset="utf-8">
+  <title>My Grist Chart Widget</title>
+  <!-- Include Plotly.js library -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
+</head>
 
-        // Define the trace for the chart
-        const trace = {
-          x: data,
-          type: 'bar',
-        };
+<body>
+  <!-- Create a container element for the chart -->
+  <div id="chart-container"></div>
+  <script>
+    // Wait for the Grist API to be ready
+    // Wait for the Grist API to be ready
+    grist.ready();
 
-        // Define the layout of the chart
-        const layout = {
-          width: 400,
-          height: 300,
-          margin: { t: 0, r: 0, b: 30, l: 30 },
-          xaxis: { title: 'My Data' },
-          yaxis: { title: 'Count' },
-        };
+    // Map over all records in the column and render a chart based on each record's data
+    grist.getAllRecords().then(records => {
+      // Extract the data you need from each record in the column
+      const data = records.map(record => record.myDataColumn);
 
-        // Create the chart using Plotly.js
-        Plotly.newPlot('chart-container', [trace], layout);
-      });
-    </script>
-  </body>
+      // Define the trace for the chart
+      const trace = {
+        y: data,
+        type: 'bar',
+      };
+
+      // Define the layout of the chart
+      const layout = {
+        width: 400,
+        height: 300,
+        margin: { t: 0, r: 0, b: 30, l: 30 },
+        xaxis: { title: 'My Data' },
+        yaxis: { title: 'Count' },
+      };
+
+      // Create the chart using Plotly.js
+      Plotly.newPlot('chart-container', [trace], layout);
+    });
+  </script>
+</body>
+
 </html>
 
 <!-- 
