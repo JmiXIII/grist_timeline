@@ -20,8 +20,8 @@
     // Map over all records in the column and render a chart based on each record's data
     grist.getAllRecords().then(records => {
       // Extract the data you need from each record in the column
-      const data = records.map(record => record.myDataColumn);
-
+      const data = grist.tables[tableId].getColumn('myDataColumn').filter((value) => value !== null);
+      
       // Define the trace for the chart
       const trace = {
         y: data,
