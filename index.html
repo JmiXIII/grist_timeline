@@ -16,31 +16,31 @@
     // Wait for the Grist API to be ready
     grist.ready();
 
-    // When a new record is selected in the Grist table, render a chart based on its data
-    grist.onRecord(function (record) {
-      // Extract the data you need from the Grist record object
-      // const data = record.myDataColumn;
+    //  // When a new record is selected in the Grist table, render a chart based on its data
+    //  grist.onRecord(function(record) {
+    //    // Extract the data you need from the Grist record object
+    //    const data = record.myDataColumn;
 
-      const columnData = record.myColumnData;
-      const data = [].concat.apply([], columnData);
+    // Get the entire column of data from the Grist table
+    const dataColumn = grist.createView().column("myDataColumn").data();
 
-      // Define the trace for the chart
-      const trace = {
-        x: data,
-        type: 'bar',
-      };
+    // Define the trace for the chart
+    const trace = {
+      x: dataColumn,
+      type: 'bar',
+    };
 
-      // Define the layout of the chart
-      const layout = {
-        width: 400,
-        height: 300,
-        margin: { t: 0, r: 0, b: 30, l: 30 },
-        xaxis: { title: 'My Data' },
-        yaxis: { title: 'Count' },
-      };
+    // Define the layout of the chart
+    const layout = {
+      width: 400,
+      height: 300,
+      margin: { t: 0, r: 0, b: 30, l: 30 },
+      xaxis: { title: 'My Data' },
+      yaxis: { title: 'Count' },
+    };
 
-      // Create the chart using Plotly.js
-      Plotly.newPlot('chart-container', [trace], layout);
+    // Create the chart using Plotly.js
+    Plotly.newPlot('chart-container', [trace], layout);
     });
   </script>
 </body>
