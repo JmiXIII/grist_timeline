@@ -17,11 +17,14 @@
     // Wait for the Grist API to be ready
     grist.ready();
 
-    // Map over all records in the column and render a chart based on each record's data
-    grist.getAllRecords().then(records => {
-      // Extract the data you need from each record in the column
-      const data = grist.tables[tableId].getColumn('myDataColumn').filter((value) => value !== null);
-      
+      // Get the tableId for a table named "MyTable"
+      const tableId = grist.docList.find(table => table.name === 'MyTable').tableId;
+
+      // When the table is loaded or updated, render a chart based on the column data
+      grist.onTable(function() {
+        // Extract the data you need from the Grist column object
+        const data = grist.tables[tableId].getColumn('myDataColumn').filter((value) => value !== null);
+
       // Define the trace for the chart
       const trace = {
         y: data,
