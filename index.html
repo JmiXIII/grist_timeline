@@ -1,43 +1,47 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>My Grist Chart Widget</title>
-    <!-- Include Plotly.js library -->
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
-  </head>
-  <body>
-    <!-- Create a container element for the chart -->
-    <div id="chart-container"></div>
-    <script>
-      // Wait for the Grist API to be ready
-      grist.ready(() => {
-        // Get the tableId for a table named "MyTable"
-        const tableId = grist.docList.find(table => table.name === 'Animals').tableId;
-        console.log("start")
-        // Select all the records in the "myDataColumn" column and store them in an array
-        const records = grist.tables[tableId].getRecords().map(record => record.myDataColumn);
-        console.log("records --> " + records)
 
-        // Define the trace for the chart
-        const trace = {
-          x: records,
-          type: 'bar',
-        };
+<head>
+  <meta charset="utf-8">
+  <title>My Grist Chart Widget</title>
+  <!-- Include Plotly.js library -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
+</head>
 
-        // Define the layout of the chart
-        const layout = {
-          width: 400,
-          height: 300,
-          margin: { t: 0, r: 0, b: 30, l: 30 },
-          xaxis: { title: 'My Data' },
-          yaxis: { title: 'Count' },
-        };
+<body>
+  <!-- Create a container element for the chart -->
+  <div id="chart-container"></div>
+  <script>
+    console.log("start0")
+    // Wait for the Grist API to be ready
+    grist.ready(() => {
+      // Get the tableId for a table named "MyTable"
+      const tableId = grist.docList.find(table => table.name === 'Animals').tableId;
+      console.log("start")
+      // Select all the records in the "myDataColumn" column and store them in an array
+      const records = grist.tables[tableId].getRecords().map(record => record.myDataColumn);
+      console.log("records --> " + records)
 
-        // Create the chart using Plotly.js
-        Plotly.newPlot('chart-container', [trace], layout);
-      });
-    </script>
-  </body>
+      // Define the trace for the chart
+      const trace = {
+        x: records,
+        type: 'bar',
+      };
+
+      // Define the layout of the chart
+      const layout = {
+        width: 400,
+        height: 300,
+        margin: { t: 0, r: 0, b: 30, l: 30 },
+        xaxis: { title: 'My Data' },
+        yaxis: { title: 'Count' },
+      };
+
+      // Create the chart using Plotly.js
+      Plotly.newPlot('chart-container', [trace], layout);
+    });
+  </script>
+</body>
+
 </html>
