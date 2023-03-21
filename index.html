@@ -12,10 +12,8 @@
     <div id="chart-container"></div>
     <script>
       // Wait for the Grist API to be ready
-      grist.ready();
-
-      // When the Grist document is ready, get the tableId for a table named "MyTable"
-      grist.onDocLoad(() => {
+      grist.ready(() => {
+        // Get the tableId for a table named "MyTable"
         const tableId = grist.docList.find(table => table.name === 'Animals').tableId;
 
         // Select all the records in the "myDataColumn" column and store them in an array
