@@ -21,8 +21,11 @@
     //    // Extract the data you need from the Grist record object
     //    const data = record.myDataColumn;
 
-    // Get the entire column of data from the Grist table
-    const dataColumn = grist.createView().column("myDataColumn").data();
+    // Get a reference to the table you want to query
+    const table = grist.getTable("MyTable");
+
+    // Get an array of all the values in a particular column
+    const dataColumn = table.getRecordValues("myDataColumn");
 
     // Define the trace for the chart
     const trace = {
