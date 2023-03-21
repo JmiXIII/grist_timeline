@@ -18,6 +18,7 @@
 
         // Select all the records in the "myDataColumn" column and store them in an array
         const records = grist.tables[tableId].getRecords().map(record => record.myDataColumn);
+        console.log(records)
 
         // Define the trace for the chart
         const trace = {
