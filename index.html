@@ -10,16 +10,19 @@
 </head>
 
 <body>
-     <!-- Create a container element for the chart -->
-     <div id="chart-container"></div>
-     <script>
-       // Wait for the Grist API to be ready
-       grist.ready();
- 
-       // When a new record is selected in the Grist table, render a chart based on its data
-       grist.onRecord(function(record) {
-         // Extract the data you need from the Grist record object
-         const data = record.myDataColumn;
+  <!-- Create a container element for the chart -->
+  <div id="chart-container"></div>
+  <script>
+    // Wait for the Grist API to be ready
+    grist.ready();
+
+    // When a new record is selected in the Grist table, render a chart based on its data
+    grist.onRecord(function (record) {
+      // Extract the data you need from the Grist record object
+      // const data = record.myDataColumn;
+
+      const columnData = record.myColumnData;
+      const data = [].concat.apply([], columnData);
 
       // Define the trace for the chart
       const trace = {
