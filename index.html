@@ -1,15 +1,41 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <title>My Grist Chart Widget</title>
+    <!-- Include Plotly.js library -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
-    <style>
-      /* Add any custom CSS styling for your widget here */
-    </style>
   </head>
   <body>
-    Test cutom-plotly
-    <div id="chart"></div>
-    <script src="chart-widget.js"></script>
+    <!-- Create a container element for the chart -->
+    <div id="chart-container"></div>
+    <script>
+      // Wait for the Grist API to be ready
+      grist.ready();
+      // When a new record is selected in the Grist table, render a chart based on its data
+      grist.onRecord(function (record) {
+        // Extract the data you need from the Grist record object
+        const data = record.myDataColumn;
+
+        // Define the trace for the chart
+        const trace = {
+          x: data,
+          type: "histogram",
+        };
+
+        // Define the layout of the chart
+        const layout = {
+          width: 400,
+          height: 300,
+          margin: { t: 0, r: 0, b: 30, l: 30 },
+          xaxis: { title: "My Data Column" },
+          yaxis: { title: "Count" },
+        };
+
+        // Create the chart using Plotly.js
+        Plotly.newPlot("chart-container", [trace], layout);
+      });
+    </script>
   </body>
 </html>
