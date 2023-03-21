@@ -1,53 +1,44 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>My Grist Chart Widget</title>
+    <!-- Include Plotly.js library -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
+  </head>
+  <body>
+    <!-- Create a container element for the chart -->
+    <div id="chart-container"></div>
+    <script>
+      // Wait for the Grist API to be ready
+      grist.ready();
 
-<head>
-  <meta charset="utf-8">
-  <title>My Grist Chart Widget</title>
-  <!-- Include Plotly.js library -->
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
-</head>
+      // When the Grist document is ready, get the tableId for a table named "MyTable"
+      grist.onDocLoad(() => {
+        const tableId = grist.docList.find(table => table.name === 'Animals').tableId;
 
-<body>
-  <!-- Create a container element for the chart -->
-  <div id="chart-container"></div>
-  <script>
-    // Wait for the Grist API to be ready
-    // Wait for the Grist API to be ready
-    grist.ready();
+        // Select all the records in the "myDataColumn" column and store them in an array
+        const records = grist.tables[tableId].getRecords().map(record => record.myDataColumn);
 
-      // Get the tableId for a table named "MyTable"
-      // const tableId = grist.docList.find(table => table.name === 'Animals').tableId;
+        // Define the trace for the chart
+        const trace = {
+          x: records,
+          type: 'bar',
+        };
 
-      // When the table is loaded or updated, render a chart based on the column data
-        // Extract the data you need from the Grist column object
-        const data = grist.tables['Animals'].getColumn('myDataColumn').filter((value) => value !== null);
+        // Define the layout of the chart
+        const layout = {
+          width: 400,
+          height: 300,
+          margin: { t: 0, r: 0, b: 30, l: 30 },
+          xaxis: { title: 'My Data' },
+          yaxis: { title: 'Count' },
+        };
 
-      // Define the trace for the chart
-      const trace = {
-        x: data,
-        type: 'bar',
-      };
-
-      // Define the layout of the chart
-      const layout = {
-        width: 400,
-        height: 300,
-        margin: { t: 0, r: 0, b: 30, l: 30 },
-        xaxis: { title: 'My Data' },
-        yaxis: { title: 'Count' },
-      };
-
-      // Create the chart using Plotly.js
-      Plotly.newPlot('chart-container', [trace], layout);
-  </script>
-</body>
-
+        // Create the chart using Plotly.js
+        Plotly.newPlot('chart-container', [trace], layout);
+      });
+    </script>
+  </body>
 </html>
-
-<!-- 
-  In this example, we assume that the data you want to visualize is spread across three columns named myDataColumn1, myDataColumn2, and myDataColumn3. We use the concat() method to concatenate the data from all three columns into a single array named data, which we then pass to the x property of the trace object.
-
-Note that this example assumes that all three columns contain numerical data. If your data is of a different type, you may need to modify the way you concatenate the data.
- -->
