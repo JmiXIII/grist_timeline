@@ -17,17 +17,12 @@
       // When a new record is selected in the Grist table, render a chart based on its data
       grist.onRecord(function(record) {
         // Extract the data you need from the Grist record object
-        const data1 = record.myDataColumn1;
-        const data2 = record.myDataColumn2;
-        const data3 = record.myDataColumn3;
-
-        // Concatenate the data from all columns into a single array
-        const data = data1.concat(data2).concat(data3);
+        const data = record.myDataColumn;
 
         // Define the trace for the chart
         const trace = {
           x: data,
-          type: 'histogram',
+          type: 'bar',
         };
 
         // Define the layout of the chart
