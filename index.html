@@ -10,37 +10,42 @@
 </head>
 
 <body>
-  <!-- Create a container element for the chart -->
-  <div id="chart-container"></div>
-  <script>
-    console.log("start0")
-    // Wait for the Grist API to be ready
-    grist.ready(() => {
-      // Get the tableId for a table named "MyTable"
-      const tableId = grist.docList.find(table => table.name === 'Animals').tableId;
-      console.log("start")
-      // Select all the records in the "myDataColumn" column and store them in an array
-      const records = grist.tables[tableId].getRecords().map(record => record.myDataColumn);
-      console.log("records --> " + records)
+     <!-- Create a container element for the chart -->
+     <div id="chart-container"></div>
+     <script>
+// Wait for the Grist API to be ready
+grist.ready();
 
-      // Define the trace for the chart
-      const trace = {
-        x: records,
-        type: 'bar',
-      };
+// When the page loads, render a chart based on the data in the column
+grist.onLoad(async function() {
+  // Get the column you want to visualize
+  const column = await grist.getColumn('myDataColumn');
 
-      // Define the layout of the chart
-      const layout = {
-        width: 400,
-        height: 300,
-        margin: { t: 0, r: 0, b: 30, l: 30 },
-        xaxis: { title: 'My Data' },
-        yaxis: { title: 'Count' },
-      };
+  // Get all the records in the table
+  const records = await grist.getRecords();
 
-      // Create the chart using Plotly.js
-      Plotly.newPlot('chart-container', [trace], layout);
-    });
+  // Extract the data for the chart from the column in each record
+  const data = records.map(record => record[column.colRef]);
+
+  // Define the trace for the chart
+  const trace = {
+    y: data,
+    type: 'bar',
+  };
+
+  // Define the layout of the chart
+  const layout = {
+    width: 400,
+    height: 300,
+    margin: { t: 0, r: 0, b: 30, l: 30 },
+    xaxis: { title: 'My Data' },
+    yaxis: { title: 'Count' },
+  };
+
+  // Create the chart using Plotly.js
+  Plotly.newPlot('chart-container', [trace], layout);
+});
+
   </script>
 </body>
 
