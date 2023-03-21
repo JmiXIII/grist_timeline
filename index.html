@@ -24,8 +24,11 @@
     // Get a reference to the table you want to query
     const table = grist.getTable("Animals");
 
-    // Get an array of all the values in a particular column
-    const dataColumn = table.getRecordValues("myDataColumn");
+    // Query the table for all records and the "myDataColumn" column
+    const queryResult = table.query(null, { select: { myDataColumn: 1 } });
+
+    // Extract the values from the query result
+    const dataColumn = queryResult.results.map((record) => record.myDataColumn);
 
     // Define the trace for the chart
     const trace = {
