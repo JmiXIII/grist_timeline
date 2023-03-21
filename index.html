@@ -23,7 +23,7 @@
       // When the table is loaded or updated, render a chart based on the column data
       grist.onTable(function() {
         // Extract the data you need from the Grist column object
-        const data = grist.tables[tableId].getColumn('myDataColumn').filter((value) => value !== null);
+        const data = grist.tables['Animals'].getColumn('myDataColumn').filter((value) => value !== null);
 
       // Define the trace for the chart
       const trace = {
