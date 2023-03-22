@@ -15,7 +15,7 @@
      <script>
        // Wait for the Grist API to be ready
        grist.ready();
-       const table = grist.getData();
+       const table = grist.getTable();
        console.log(table) ;
        // When a new record is selected in the Grist table, render a chart based on its data
        grist.onRecord(function(record) {
