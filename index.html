@@ -16,12 +16,12 @@
        // Wait for the Grist API to be ready
        grist.ready();
        const table = grist.getTable();
-       console.log(table) ;
+      console.log("table ---> ")
        // When a new record is selected in the Grist table, render a chart based on its data
        grist.onRecord(function(record) {
          // Extract the data you need from the Grist record object
          const data = record.myDataColumn;
-         console.log("table",table);
+         ;
 
 
       // Define the trace for the chart
