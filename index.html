@@ -10,43 +10,37 @@
 </head>
 
 <body>
-  <!-- Create a container element for the chart -->
-  <div id="chart-container"></div>
-  <script>
-    // Wait for the Grist API to be ready
-    grist.ready();
+     <!-- Create a container element for the chart -->
+     <div id="chart-container"></div>
+     <script>
+       // Wait for the Grist API to be ready
+       grist.ready();
+       const table = grist.getData();
+       console.log(table) 
+       // When a new record is selected in the Grist table, render a chart based on its data
+       grist.onRecord(function(record) {
+         // Extract the data you need from the Grist record object
+         const data = record.myDataColumn;
 
-    //  // When a new record is selected in the Grist table, render a chart based on its data
-    //  grist.onRecord(function(record) {
-    //    // Extract the data you need from the Grist record object
-    //    const data = record.myDataColumn;
 
-    // Get a reference to the table you want to query
-    const table = grist.getTable("Animals");
+      // Define the trace for the chart
+      const trace = {
+        x: data,
+        type: 'bar',
+      };
 
-    // Query the table for all records and the "myDataColumn" column
-    const queryResult = table.query(null, { select: { myDataColumn: 1 } });
+      // Define the layout of the chart
+      const layout = {
+        width: 400,
+        height: 300,
+        margin: { t: 0, r: 0, b: 30, l: 30 },
+        xaxis: { title: 'My Data' },
+        yaxis: { title: 'Count' },
+      };
 
-    // Extract the values from the query result
-    const dataColumn = queryResult.results.map((record) => record.myDataColumn);
-
-    // Define the trace for the chart
-    const trace = {
-      x: dataColumn,
-      type: 'bar',
-    };
-
-    // Define the layout of the chart
-    const layout = {
-      width: 400,
-      height: 300,
-      margin: { t: 0, r: 0, b: 30, l: 30 },
-      xaxis: { title: 'My Data' },
-      yaxis: { title: 'Count' },
-    };
-
-    // Create the chart using Plotly.js
-    Plotly.newPlot('chart-container', [trace], layout);
+      // Create the chart using Plotly.js
+      Plotly.newPlot('chart-container', [trace], layout);
+    });
   </script>
 </body>
 
