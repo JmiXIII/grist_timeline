@@ -15,25 +15,10 @@
       console.log("Loaded Grist plugin API");
       console.log("typeof grist: " + typeof grist);
       // Wait for the Grist API to be ready
-      // grist.ready();
+      grist.ready();
 
-      // Wait for the Grist API to be ready
-      grist.ready().then(async () => {
-        // Get the table object for the table named "MyTable"
-        const table = await grist.docApi.getTable("MyTable");
-
-        // Get an array of values from the "MyColumn" column
-        const values = await table.getColumnValues("MyColumn");
-
-        // Log the values to the console
-        console.log(values);
-      });
-
-      // // Get the values of the myDataColumn column in the current table.
-      // const values = table.getRecordValues("myDataColumn");
-
-      // // Log the values to the console.
-      // console.log(values);
+      const table = grist.docApi.fetchTable('Animals');
+      console.log(table);
 
       // // When a new record is selected in the Grist table, render a chart based on its data
       // grist.onRecord(function (record) {
