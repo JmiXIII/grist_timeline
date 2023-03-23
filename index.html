@@ -12,40 +12,51 @@
     <!-- Create a container element for the chart -->
     <div id="chart-container"></div>
     <script>
+      // // Wait for the Grist API to be ready
+      // grist.ready();
+
       // Wait for the Grist API to be ready
-      grist.ready();
-      // Get the current table.
-      const table = grist.docApi.getCurrentTable();
+      grist.ready().then(async () => {
+        // Get the table object for the table named "MyTable"
+        const table = await grist.docApi.getTable("MyTable");
 
-      // Get the values of the myDataColumn column in the current table.
-      const values = table.getRecordValues("myDataColumn");
+        // Get an array of values from the "MyColumn" column
+        const values = await table.getColumnValues("MyColumn");
 
-      // Log the values to the console.
-      console.log(values);
-      // When a new record is selected in the Grist table, render a chart based on its data
-      grist.onRecord(function (record) {
-        // Extract the data you need from the Grist record object
-        const data = record.myDataColumn;
-        console.log("table", table);
-
-        // Define the trace for the chart
-        const trace = {
-          x: data,
-          type: "bar",
-        };
-
-        // Define the layout of the chart
-        const layout = {
-          width: 400,
-          height: 300,
-          margin: { t: 0, r: 0, b: 30, l: 30 },
-          xaxis: { title: "My Data" },
-          yaxis: { title: "Count" },
-        };
-
-        // Create the chart using Plotly.js
-        Plotly.newPlot("chart-container", [trace], layout);
+        // Log the values to the console
+        console.log(values);
       });
+
+      // // Get the values of the myDataColumn column in the current table.
+      // const values = table.getRecordValues("myDataColumn");
+
+      // // Log the values to the console.
+      // console.log(values);
+
+      // // When a new record is selected in the Grist table, render a chart based on its data
+      // grist.onRecord(function (record) {
+      //   // Extract the data you need from the Grist record object
+      //   const data = record.myDataColumn;
+      //   console.log("table", table);
+
+      //   // Define the trace for the chart
+      //   const trace = {
+      //     x: data,
+      //     type: "bar",
+      //   };
+
+      //   // Define the layout of the chart
+      //   const layout = {
+      //     width: 400,
+      //     height: 300,
+      //     margin: { t: 0, r: 0, b: 30, l: 30 },
+      //     xaxis: { title: "My Data" },
+      //     yaxis: { title: "Count" },
+      //   };
+
+      //   // Create the chart using Plotly.js
+      //   Plotly.newPlot("chart-container", [trace], layout);
+      // });
     </script>
   </body>
 </html>
