@@ -12,8 +12,6 @@
     <!-- Create a container element for the chart -->
     <div id="chart-container"></div>
     <script>
-      console.log("Loaded Grist plugin API");
-      console.log("typeof grist: ----->" + typeof grist);
       // Wait for the Grist API to be ready
       grist.ready();
 
@@ -36,9 +34,10 @@
       grist.onRecord(function (record) {
         // Extract the data you need from the Grist record object
         const data = grist.docApi.fetchTable("Animals");
-        console.log(data.then((res) => {
+        let tableau = data.then((res) => {
           res.myDataColumn;
-        }));
+        });
+        console.log("tableau ---> ",tableau)
         // Define the trace for the chart
         const trace = {
           x: tableau,
