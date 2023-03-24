@@ -35,11 +35,11 @@
         // Extract the data you need from the Grist record object
         const data = grist.docApi.fetchTable("Animals").then((resp)=>{
           // console.log("fetch", resp.myDataColumn);
-          xdata=resp.myDataColumn});
-        console.log("::::::::xdata -> ",data.xdata)
+          return resp.myDataColumn});
+        console.log("::::::::data -> ",data)
         // Define the trace for the chart
         const trace = {
-          x: data.xdata,
+          x: data,
           type: "bar",
         };
 
