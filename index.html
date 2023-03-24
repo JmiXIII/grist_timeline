@@ -18,7 +18,8 @@
       grist.ready();
 
       const data = grist.docApi.fetchTable("Animals");
-      table.then((res) => {res.myDataColumn;
+      data.then((res) => {
+        res.myDataColumn
       });
 
       // function toRecordMap(columnData) {
