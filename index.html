@@ -13,26 +13,28 @@
     <div id="chart-container"></div>
     <script>
       console.log("Loaded Grist plugin API");
-      console.log("typeof grist: " + typeof grist);
+      console.log("typeof grist: ----->" + typeof grist);
       // Wait for the Grist API to be ready
       grist.ready();
 
       const table = grist.docApi.fetchTable("Animals");
+      const result = table.json();
+      console.log(result);
 
-      function toRecordMap(columnData) {
-        const fieldNames = Object.keys(columnData);
-        return new Map(
-          columnData.id.map((id, index) => {
-            const values = fieldNames.map((col) => [
-              col,
-              columnData[col][index],
-            ]);
-            return [id, Object.fromEntries(values)];
-          })
-        );
-      }
+      // function toRecordMap(columnData) {
+      //   const fieldNames = Object.keys(columnData);
+      //   return new Map(
+      //     columnData.id.map((id, index) => {
+      //       const values = fieldNames.map((col) => [
+      //         col,
+      //         columnData[col][index],
+      //       ]);
+      //       return [id, Object.fromEntries(values)];
+      //     })
+      //   );
+      // }
 
-      const m = toRecordMap(table);
+      // const m = toRecordMap(table);
 
 
       console.log("result --->", m);
