@@ -17,12 +17,9 @@
       // Wait for the Grist API to be ready
       grist.ready();
 
-      const table = grist.docApi.fetchTable("Animals");
-      table.then((res) => {
-        console.log(res);
-        console.log("=========>>> ",res.myDataColumn);
+      const data = grist.docApi.fetchTable("Animals");
+      table.then((res) => {res.myDataColumn;
       });
-      data = res.myDataColumn
 
       // function toRecordMap(columnData) {
       //   const fieldNames = Object.keys(columnData);
