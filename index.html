@@ -33,9 +33,10 @@
       // When a new record is selected in the Grist table, render a chart based on its data
       grist.onRecord(function (record) {
         // Extract the data you need from the Grist record object
-        const data = grist.docApi.fetchTable("Animals").then((resp)=>{
+        let data;
+        grist.docApi.fetchTable("Animals").then((resp)=>{
           // console.log("fetch", resp.myDataColumn);
-          return resp.myDataColumn});
+          data = resp.myDataColumn});
         console.log("::::::::data -> ",data)
         // Define the trace for the chart
         const trace = {
