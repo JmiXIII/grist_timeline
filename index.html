@@ -36,9 +36,9 @@
       grist.onRecord(function (record) {
         // Extract the data you need from the Grist record object
         const data = grist.docApi.fetchTable("Animals");
-        const tableau = data.then((res) => {
+        console.log(data.then((res) => {
           res.myDataColumn;
-        });
+        }));
         // Define the trace for the chart
         const trace = {
           x: tableau,
