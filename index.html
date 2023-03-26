@@ -15,35 +15,27 @@
   <script>
     // Wait for the Grist API to be ready
     grist.ready();
-
-    // function toRecordMap(columnData) {
-    //   const fieldNames = Object.keys(columnData);
-    //   return new Map(
-    //     columnData.id.map((id, index) => {
-    //       const values = fieldNames.map((col) => [
-    //         col,
-    //         columnData[col][index],
-    //       ]);
-    //       return [id, Object.fromEntries(values)];
-    //     })
-    //   );
-    // }
-
-    // const m = toRecordMap(table);
-
     // When a new record is selected in the Grist table, render a chart based on its data
     grist.onRecord(function (record) {
       // Extract the data you need from the Grist record object
       let data;
       grist.docApi.fetchTable("Animals").then((resp) => {
-        // console.log("fetch", resp.myDataColumn);
-        data = resp.myDataColumn;
-        console.log("::::::::data -> ", data);
+        results = resp.Result;
+        date = resp.Date;
+        target = resp.Target;
         // Define the trace for the chart
-        const trace = {
-          x: data,
+        const traceResult = {
+          y: results,
+          x: date,
           type: "bar",
         };
+        const traceTarget = {
+          y: target
+          x:date,
+          type="line",
+        };
+
+        const data = [traceResult,traceTarget]
 
         // Define the layout of the chart
         const layout = {
@@ -54,7 +46,7 @@
           yaxis: { title: "Count" },
         };
         // Create the chart using Plotly.js
-        Plotly.newPlot("chart-container", [trace], layout);
+        Plotly.newPlot("chart-container", [data], layout);
       });});
   </script>
 </body>
