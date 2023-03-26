@@ -1,43 +1,44 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>My Grist Chart Widget</title>
-    <!-- Include Plotly.js library -->
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
-  </head>
 
-  <body>
-    <!-- Create a container element for the chart -->
-    <div id="chart-container"></div>
-    <script>
-      // Wait for the Grist API to be ready
-      grist.ready();
+<head>
+  <meta charset="utf-8" />
+  <title>My Grist Chart Widget</title>
+  <!-- Include Plotly.js library -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
+</head>
 
-      // function toRecordMap(columnData) {
-      //   const fieldNames = Object.keys(columnData);
-      //   return new Map(
-      //     columnData.id.map((id, index) => {
-      //       const values = fieldNames.map((col) => [
-      //         col,
-      //         columnData[col][index],
-      //       ]);
-      //       return [id, Object.fromEntries(values)];
-      //     })
-      //   );
-      // }
+<body>
+  <!-- Create a container element for the chart -->
+  <div id="chart-container"></div>
+  <script>
+    // Wait for the Grist API to be ready
+    grist.ready();
 
-      // const m = toRecordMap(table);
+    // function toRecordMap(columnData) {
+    //   const fieldNames = Object.keys(columnData);
+    //   return new Map(
+    //     columnData.id.map((id, index) => {
+    //       const values = fieldNames.map((col) => [
+    //         col,
+    //         columnData[col][index],
+    //       ]);
+    //       return [id, Object.fromEntries(values)];
+    //     })
+    //   );
+    // }
 
-      // When a new record is selected in the Grist table, render a chart based on its data
-      grist.onRecord(function (record) {
-        // Extract the data you need from the Grist record object
-        let data;
-        grist.docApi.fetchTable("Animals").then((resp)=>{
-          // console.log("fetch", resp.myDataColumn);
-          data = resp.myDataColumn});
-        console.log("::::::::data -> ",data)
+    // const m = toRecordMap(table);
+
+    // When a new record is selected in the Grist table, render a chart based on its data
+    grist.onRecord(function (record) {
+      // Extract the data you need from the Grist record object
+      let data;
+      grist.docApi.fetchTable("Animals").then((resp) => {
+        // console.log("fetch", resp.myDataColumn);
+        data = resp.myDataColumn;
+        console.log("::::::::data -> ", data);
         // Define the trace for the chart
         const trace = {
           x: data,
@@ -55,6 +56,7 @@
         // Create the chart using Plotly.js
         Plotly.newPlot("chart-container", [trace], layout);
       });
-    </script>
-  </body>
+  </script>
+</body>
+
 </html>
