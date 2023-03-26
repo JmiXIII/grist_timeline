@@ -38,15 +38,8 @@
         const data = [traceResult,traceTarget]
 
         // Define the layout of the chart
-        const layout = {
-          width: 400,
-          height: 300,
-          margin: { t: 0, r: 0, b: 30, l: 30 },
-          xaxis: { title: "My Data" },
-          yaxis: { title: "Count" },
-        };
         // Create the chart using Plotly.js
-        Plotly.newPlot("chart-container", data, layout);
+        Plotly.newPlot("chart-container", data);
       });});
   </script>
 </body>
