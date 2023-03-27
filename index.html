@@ -20,7 +20,7 @@
         let data;
         grist.viewApi.fetchSelectedTable("Animals").then((resp) => {
           results = resp.Result;
-          dated = resp.Date;
+          dated = resp.Date.map(x => x[0]);
           target = resp.Target;
           // Define the trace for the chart
           const traceResult = {
