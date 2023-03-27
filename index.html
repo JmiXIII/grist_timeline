@@ -20,7 +20,7 @@
         let data;
         grist.docApi.fetchTable("Animals").then((resp) => {
           results = resp.Result;
-          date = Date(resp.Date);
+          dated = Date(resp.Date);
           target = resp.Target;
           // Define the trace for the chart
           const traceResult = {
@@ -29,12 +29,12 @@
             type: "bar",
           };
 
-          console.log("date --> ",date);
+          console.log("date --> ",dated);
           console.log("results --> ",results);
 
           const traceTarget = {
             y: target,
-            x: date,
+            x: dated,
             type: "line",
           };
 
