@@ -13,37 +13,47 @@
     <div id="chart-container"></div>
     <script>
       // Wait for the Grist API to be ready
-      grist.ready();
+      grist.ready({
+        columns: ["Date", "Result", "Target"],
+        requiredAccess: "read table",
+      });
       // When a new record is selected in the Grist table, render a chart based on its data
-      grist.onRecord(function (record) {
-        // Extract the data you need from the Grist record object
-        let data;
-        grist.docApi.fetchTable("Animals").then((resp) => {
-          results = resp.Result;
-          dated = resp.Date.map(x => new Date(x*1000));
-          target = resp.Target;
-          // Define the trace for the chart
-          const traceResult = {
-            y: results,
-            x: dated,
-            type: "bar",
-          };
+      grist.onRecord(function (record, mappings) {
+        const mapped = grist.mapColumnNames(record);
+        if (mapped) {
+          // Extract the data you need from the Grist record object
+          let data;
+          grist.docApi.fetchTable("Animals").then((resp) => {
+            results = resp.Result;
+            dated = resp.Date.map((x) => new Date(x * 1000));
+            target = resp.Target;
+            // Define the trace for the chart
+            const traceResult = {
+              y: results,
+              x: dated,
+              type: "bar",
+            };
 
-          console.log("date --> ",dated);
-          console.log("results --> ",results);
+            console.log("date --> ", dated);
+            console.log("results --> ", results);
 
-          const traceTarget = {
-            y: target,
-            x: dated,
-            type: "line",
-          };
+            const traceTarget = {
+              y: target,
+              x: dated,
+              type: "line",
+            };
 
-          const data = [traceResult, traceTarget];
+            const data = [traceResult, traceTarget];
 
-          // Define the layout of the chart
-          // Create the chart using Plotly.js
-          Plotly.newPlot("chart-container", data);
-        });
+            // Define the layout of the chart
+            // Create the chart using Plotly.js
+            Plotly.newPlot("chart-container", data);
+          });
+        } else {
+          // Helper returned a null value. It means that not all
+          // required columns were mapped.
+          console.error("Please map all columns");
+        }
       });
     </script>
   </body>
