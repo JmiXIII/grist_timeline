@@ -8,16 +8,45 @@
   <body>
     <pre id="readout">Waiting for data...</pre>
     <img id="image" src="" />
+
+    <!-- Create a container element for the chart -->
+    <div id="chart-container"></div>
     <div id="title"></div>
     <script>
-      grist.ready({ columns: ["Link", "Title"], requiredAccess: "read table" });
+      grist.ready({
+        columns: ["Date", "Result", "Target"],
+        requiredAccess: "read table",
+      });
       grist.onRecord(function (record, mappings) {
         const mapped = grist.mapColumnNames(record);
         // First check if all columns were mapped.
         if (mapped) {
-          document.getElementById("image").src = mapped.Link;
-          document.getElementById("title").innerText = mapped.Title;
-          console.log(`Using ${mappings.Link} and ${mappings.Title} columns`);
+          const data = grist.docAPI.fetchTable().then((resp) => {
+            results = resp.Result;
+            dated = resp.Date.map((x) => x[1]).map((x) => new Date(x * 1000));
+            target = resp.Target;
+            // Define the trace for the chart
+            const traceResult = {
+              y: results,
+              x: dated,
+              type: "bar",
+            };
+
+            console.log("date --> ", dated);
+            console.log("results --> ", results);
+
+            const traceTarget = {
+              y: target,
+              x: dated,
+              type: "line",
+            };
+
+            const data = [traceResult, traceTarget];
+
+            // Define the layout of the chart
+            // Create the chart using Plotly.js
+            Plotly.newPlot("chart-container", data);
+          });
         } else {
           // Helper returned a null value. It means that not all
           // required columns were mapped.
