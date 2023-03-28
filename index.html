@@ -26,7 +26,7 @@
           grist.docApi.fetchTable("DATA").then((resp) => {
             results = resp.Résultats;
             dated = resp.Date.map((x) => new Date(x * 1000));
-            target = resp.Target;
+            target = resp.Objectif;
             // Define the trace for the chart
             const traceResult = {
               y: results,
