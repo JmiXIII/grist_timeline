@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>onRecord</title>
+    <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
+  </head>
+  <body>
+    <pre id="readout">Waiting for data...</pre>
+    <script>
+        grist.ready({columns: ['Link', 'Title'], requiredAccess: 'read table'});
+        grist.onRecord(function (record, mappings) {
+          const mapped = grist.mapColumnNames(record);
+          // First check if all columns were mapped.
+          if (mapped) {
+            document.getElementById('image').src = mapped.Link;
+            document.getElementById('title').innerText = mapped.Title;
+            console.log(`Using ${mappings.Link} and ${mappings.Title} columns`);
+          } else {
+            // Helper returned a null value. It means that not all
+            // required columns were mapped.
+            console.error("Please map all columns");
+          }
+        });
+        </script>
+  </body>
+</html>
