@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>onRecord</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
   </head>
   <body>
@@ -21,7 +22,7 @@
         const mapped = grist.mapColumnNames(record);
         // First check if all columns were mapped.
         if (mapped) {
-          const data = grist.docAPI.fetchTable().then((resp) => {
+          const data = grist.docApi.fetchTable().then((resp) => {
             results = resp.Result;
             dated = resp.Date.map((x) => x[1]).map((x) => new Date(x * 1000));
             target = resp.Target;
