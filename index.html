@@ -14,7 +14,7 @@
     <script>
       // Wait for the Grist API to be ready
       grist.ready({
-        columns: ["Date", "Result", "Target"],
+        columns: ["Date", "Résultats", "Target"],
         requiredAccess: "read table",
       });
       // When a new record is selected in the Grist table, render a chart based on its data
@@ -24,7 +24,7 @@
           // Extract the data you need from the Grist record object
           let data;
           grist.docApi.fetchTable("DATA").then((resp) => {
-            results = resp.Result;
+            results = resp.Résultats;
             dated = resp.Date.map((x) => new Date(x * 1000));
             target = resp.Target;
             // Define the trace for the chart
@@ -36,6 +36,8 @@
 
             console.log("date --> ", dated);
             console.log("results --> ", results);
+            console.log("Objectifs --> ", target);
+
 
             const traceTarget = {
               y: target,
