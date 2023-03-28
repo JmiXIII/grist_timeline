@@ -23,7 +23,7 @@
         if (mapped) {
           // Extract the data you need from the Grist record object
           let data;
-          grist.docApi.fetchTable(DATA).then((resp) => {
+          grist.docApi.fetchTable("DATA").then((resp) => {
             results = resp.Result;
             dated = resp.Date.map((x) => new Date(x * 1000));
             target = resp.Target;
