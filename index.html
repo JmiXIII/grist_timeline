@@ -18,9 +18,9 @@
       grist.onRecord(function (record) {
         // Extract the data you need from the Grist record object
         let data;
-        grist.docApi.fetchTable("Animals").then((resp) => {
+        grist.viewApi.fetchSelectedTable("Animals").then((resp) => {
           results = resp.Result;
-          dated = resp.Date;
+          dated = resp.Date.map(x => x[1]).map(x => new Date(x*1000));
           target = resp.Target;
           // Define the trace for the chart
           const traceResult = {
