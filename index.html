@@ -20,7 +20,7 @@
       requiredAccess: "read table",
     });
     // When a new record is selected in the Grist table, render a chart based on its data
-    grist.onRecords(function (record, mappings) {
+    grist.onRecords(function (records, mappings) {
       const mapped = grist.mapColumnNames(record);
       if (mapped) {
         document.getElementById('readout').innerHTML = JSON.stringify(records, null, 2);
