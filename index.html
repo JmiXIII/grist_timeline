@@ -42,9 +42,15 @@
           y: mResults.map(obj => obj.Result),
           type: "bar",
         };
+        var traceTarget = {
+          x: mTargets.map(obj => obj.Date),
+          y: mTargets.map(obj => obj.Target),
+          type: "scatter",
+        };
+
         console.log("=============> ", traceResult);
         // console.log("=============> ", mResults.map(obj => obj.Result));
-        var data = [traceResult];
+        var data = [traceResult,traceTarget];
         Plotly.newPlot('myDiv', data);
 
       } else {
