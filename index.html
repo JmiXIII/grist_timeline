@@ -26,13 +26,13 @@
         const mapped = grist.mapColumnNames(records);
         if (mapped) {
           datas = JSON.stringify(records, null, 2);
-          const results = _.chain(datas)
+          const results = _.chain(records)
             .map((item) => ({
               Date: item?.Date,
               Objectif: item?.Objectif,
             }))
             .value();
-          document.getElementById("result").innerHTML = results;
+          document.getElementById("result").innerHTML = JSON.stringify(results,null,2);
         } else {
           // Helper returned a null value. It means that not all
           // required columns were mapped.
