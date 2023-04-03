@@ -26,22 +26,8 @@
         var mapped = grist.mapColumnNames(records);
         if (mapped) {
           datas = JSON.stringify(records, null, 2);
-          var targets = _.chain(records)
-            .map((item) => ({
-              id: item?.id,
-              Date: item?.Date,
-              Target: item?.Target,
-            }))
-            .value();
-          var results = _.chain(records)
-            .map((item) => ({
-              id : item?.id,
-              Date: item?.Date,
-              Result: item?.Result
-            }))
-            .value();
-
-          var results = records['Date'];
+          targets = records.map(({ Date, Target }) => ({ Date, Target }));
+          results = records.map(({ Date, Result }) => ({ Date, Result }));
           document.getElementById("result").innerHTML = JSON.stringify(results,null,2);
           document.getElementById("target").innerHTML = JSON.stringify(targets,null,2);
           document.getElementById("readout").innerHTML = JSON.stringify(records,null,2 );
