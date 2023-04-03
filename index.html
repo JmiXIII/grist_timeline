@@ -32,7 +32,7 @@
           targets = records.map(({ Date, Target }) => ({ Date, Target }));
           results = records.map(({ Date, Result }) => ({ Date, Result }));
           document.getElementById("result").innerHTML = JSON.stringify(results,null,2);
-          document.getElementById("target").innerHTML = JSON.stringify(mtarget,null,2);
+          document.getElementById("target").innerHTML = JSON.stringify(mTarget,null,2);
           document.getElementById("readout").innerHTML = JSON.stringify(records,null,2 );
           document.getElementById("mapped").innerHTML = JSON.stringify(mapped,null,2 );
         } else {
