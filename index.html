@@ -28,13 +28,22 @@
           datas = JSON.stringify(records, null, 2);
           const results = _.chain(records)
             .map((item) => ({
+              id: item?.id,
               Date: item?.Date,
               Objectif: item?.Objectif,
             }))
             .value();
-          document.getElementById("result").innerHTML = JSON.stringify(results);
-          document.getElementById("readout").innerHTML =JSON.stringify(records,null,2)
-        } else {;
+          document.getElementById("result").innerHTML = JSON.stringify(
+            results,
+            null,
+            2
+          );
+          document.getElementById("readout").innerHTML = JSON.stringify(
+            records,
+            null,
+            2
+          );
+        } else {
           // Helper returned a null value. It means that not all
           // required columns were mapped.
           console.error("Please map all columns");
