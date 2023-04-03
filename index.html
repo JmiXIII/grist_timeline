@@ -28,7 +28,7 @@
         if (mapped) {
           datas = JSON.stringify(records, null, 2);
           var mDate=mapped.Date;
-          var mTarget=mapped.Target;
+          var mTarget=mapped.map(({Result, Date}) => ({Result, Date}));
           targets = records.map(({ Date, Target }) => ({ mDate, mTarget }));
           results = records.map(({ Date, Result }) => ({ Date, Result }));
           document.getElementById("result").innerHTML = JSON.stringify(results,null,2);
