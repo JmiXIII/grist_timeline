@@ -38,9 +38,9 @@
         document.getElementById("mapped").innerHTML = JSON.stringify(mapped, null, 2);
 
         var traceResult = {
-          x: mResults.map(obj => obj.Date),
+          // x: mResults.map(obj => obj.Date),
           y: mResults.map(obj => obj.Result),
-          type: 'scatter',
+          type: 'bar',
         };
         console.log("=============> ", mResults.map(obj => obj.Result))
         // var data = [trace1, trace2];
