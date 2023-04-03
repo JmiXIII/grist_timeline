@@ -1,36 +1,62 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>My Grist Chart Widget</title>
+    <!-- Include Plotly.js library -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <title>My Grist Chart Widget</title>
-  <!-- Include Plotly.js library -->
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
-</head>
+  <body>
+    <!-- Create a container element for the chart -->
+    <div id="chart-container"></div>
+    <script>
+      // Wait for the Grist API to be ready
+      grist.ready({
+        columns: ["Date", "Resultats", "Objectif"],
+        requiredAccess: "read table",
+      });
+      // When a new record is selected in the Grist table, render a chart based on its data
+      grist.onRecord(function (record, mappings) {
+        const mapped = grist.mapColumnNames(record);
+        if (mapped) {
+          // Extract the data you need from the Grist record object
+          let data;
+          grist.docApi.fetchTable("DATA").then((resp) => {
+            results = resp.Resultats;
+            dated = resp.Date.map((x) => new Date(x * 1000));
+            target = resp.Objectif;
+            // Define the trace for the chart
+            const traceResult = {
+              y: results,
+              x: dated,
+              type: "bar",
+            };
 
-<body>
-  <!-- Create a container element for the chart -->
-  <div id="chart-container"></div>
-  <pre id="readout">Waiting for data...</pre>
-  <script>
-    // Wait for the Grist API to be ready
-    grist.ready({
-      columns: ["Date", "Resultats", "Objectif"],
-      requiredAccess: "read table",
-    });
-    // When a new record is selected in the Grist table, render a chart based on its data
-    grist.onRecords(function (records, mappings) {
-      const mapped = grist.mapColumnNames(records);
-      if (mapped) {
-        document.getElementById('readout').innerHTML = JSON.stringify(records, null, 2);
-      } else {
-        // Helper returned a null value. It means that not all
-        // required columns were mapped.
-        console.error("Please map all columns");
-      }
-    });
-  </script>
-</body>
+            console.log("date --> ", dated);
+            console.log("results --> ", results);
+            console.log("Objectifs --> ", target);
 
+
+            const traceTarget = {
+              y: target,
+              x: dated,
+              type: "scatter",
+            };
+
+            const data = [traceResult, traceTarget];
+
+            // Define the layout of the chart
+            // Create the chart using Plotly.js
+            Plotly.newPlot("chart-container", data);
+          });
+        } else {
+          // Helper returned a null value. It means that not all
+          // required columns were mapped.
+          console.error("Please map all columns");
+        }
+      });
+    </script>
+  </body>
 </html>
