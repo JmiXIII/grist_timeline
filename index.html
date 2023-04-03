@@ -40,12 +40,12 @@
         var traceResult = {
           x: mResults.map(obj => obj.Date),
           y: mResults.map(obj => obj.Result),
-          type: 'bar',
+          type: "bar",
         };
         console.log("=============> ", traceResult);
         // console.log("=============> ", mResults.map(obj => obj.Result));
         var data = [traceResult];
-        Plotly.newPlot('myDiv', traceResult);
+        Plotly.newPlot('myDiv', data);
 
       } else {
         // Helper returned a null value. It means that not all
