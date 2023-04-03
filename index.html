@@ -34,11 +34,12 @@
             }))
             .value();
           const results = _.chain(records)
-            .map((item)) => ({
+            .map((item) => ({
               id : item?.id,
               Date: item?.Date,
               Result: item?.Result
-            })
+            }))
+            .value();
           document.getElementById("result").innerHTML = JSON.stringify(
             results,
             null,
