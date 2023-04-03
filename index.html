@@ -32,7 +32,7 @@
               Objectif: item?.Objectif,
             }))
             .value();
-          document.getElementById("result").innerHTML = results;
+          document.getElementById("result").innerHTML = JSON.stringify(results);
         } else {
           // Helper returned a null value. It means that not all
           // required columns were mapped.
