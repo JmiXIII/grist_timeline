@@ -23,23 +23,25 @@
       });
       // When a new record is selected in the Grist table, render a chart based on its data
       grist.onRecords(function (records, mappings) {
-        const mapped = grist.mapColumnNames(records);
+        var mapped = grist.mapColumnNames(records);
         if (mapped) {
           datas = JSON.stringify(records, null, 2);
-          const targets = _.chain(records)
+          var targets = _.chain(records)
             .map((item) => ({
               id: item?.id,
               Date: item?.Date,
               Target: item?.Target,
             }))
             .value();
-          const results = _.chain(records)
+          var results = _.chain(records)
             .map((item) => ({
               id : item?.id,
               Date: item?.Date,
               Result: item?.Result
             }))
             .value();
+
+          var results = records['Date'];
           document.getElementById("result").innerHTML = JSON.stringify(results,null,2);
           document.getElementById("target").innerHTML = JSON.stringify(targets,null,2);
           document.getElementById("readout").innerHTML = JSON.stringify(records,null,2 );
