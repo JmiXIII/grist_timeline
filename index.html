@@ -27,12 +27,12 @@
         var mapped = grist.mapColumnNames(records);
         if (mapped) {
           datas = JSON.stringify(records, null, 2);
-          var mDate=mapped.Date;
-          var mTarget=mapped.map(({Result, Date}) => ({Result, Date}));
+          var mResults=mapped.map(({Result, Date}) => ({Result, Date}));
+          var mTargets=mapped.map(({Target, Date}) => ({Target, Date}));
           targets = records.map(({ Date, Target }) => ({ Date, Target }));
           results = records.map(({ Date, Result }) => ({ Date, Result }));
-          document.getElementById("result").innerHTML = JSON.stringify(results,null,2);
-          document.getElementById("target").innerHTML = JSON.stringify(mTarget,null,2);
+          document.getElementById("result").innerHTML = JSON.stringify(mResults,null,2);
+          document.getElementById("target").innerHTML = JSON.stringify(mTargets,null,2);
           document.getElementById("readout").innerHTML = JSON.stringify(records,null,2 );
           document.getElementById("mapped").innerHTML = JSON.stringify(mapped,null,2 );
         } else {
