@@ -33,7 +33,8 @@
             }))
             .value();
           document.getElementById("result").innerHTML = JSON.stringify(results);
-        } else {
+          document.getElementById("readout").innerHTML =JSON.stringify(records)
+        } else {;
           // Helper returned a null value. It means that not all
           // required columns were mapped.
           console.error("Please map all columns");
