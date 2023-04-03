@@ -13,7 +13,7 @@
     <!-- Create a container element for the chart -->
     <div id="chart-container"></div>
     <pre id="readout">Waiting for data...</pre>
-    <div id="target">waiting for target data</div>
+    <pre id="target">waiting for target data</pre>
     <pre id="result">waiting for result data</pre>
     <script>
       // Wait for the Grist API to be ready
@@ -40,16 +40,9 @@
               Result: item?.Result
             }))
             .value();
-          document.getElementById("result").innerHTML = JSON.stringify(
-            results,
-            null,
-            2
-          );
-          document.getElementById("readout").innerHTML = JSON.stringify(
-            records,
-            null,
-            2
-          );
+          document.getElementById("result").innerHTML = JSON.stringify(results,null,2);
+          document.getElementById("target").innerHTML = JSON.stringify(targets,null,2);
+          document.getElementById("readout").innerHTML = JSON.stringify(records,null,2 );
         } else {
           // Helper returned a null value. It means that not all
           // required columns were mapped.
