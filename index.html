@@ -26,13 +26,19 @@
         const mapped = grist.mapColumnNames(records);
         if (mapped) {
           datas = JSON.stringify(records, null, 2);
-          const results = _.chain(records)
+          const targets = _.chain(records)
             .map((item) => ({
               id: item?.id,
               Date: item?.Date,
-              Objectif: item?.Target,
+              Target: item?.Target,
             }))
             .value();
+          const results = _.chain(records)
+            .map((item)) => ({
+              id : item?.id,
+              Date: item?.Date,
+              Result: item?.Result
+            })
           document.getElementById("result").innerHTML = JSON.stringify(
             results,
             null,
