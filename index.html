@@ -29,15 +29,15 @@
           const targets = _.chain(records)
             .map((item) => ({
               id: item?.id,
-              Date: item?.Date,
-              Target: item?.Target,
+              Date: item?.mappings.Date,
+              Target: item?.mappings.Target,
             }))
             .value();
           const results = _.chain(records)
             .map((item) => ({
               id : item?.id,
-              Date: item?.Date,
-              Result: item?.Result
+              Date: item?.mappings.Date,
+              Result: item?.mapping.Result
             }))
             .value();
           document.getElementById("result").innerHTML = JSON.stringify(results,null,2);
