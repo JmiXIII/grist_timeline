@@ -15,6 +15,7 @@
     <pre id="readout">Waiting for data...</pre>
     <pre id="target">waiting for target data</pre>
     <pre id="result">waiting for result data</pre>
+    <pre id="mapped">mpped info</pre>
     <script>
       // Wait for the Grist API to be ready
       grist.ready({
@@ -28,11 +29,12 @@
           datas = JSON.stringify(records, null, 2);
           var mDate=mapped.Date;
           var mTarget=mapped.Target;
-          targets = records.map(({ Date, Target }) => ({ mDate, mTarget }));
+          targets = records.map(({ mDate, mTarget }) => ({ mDate, mTarget }));
           results = records.map(({ Date, Result }) => ({ Date, Result }));
           document.getElementById("result").innerHTML = JSON.stringify(results,null,2);
           document.getElementById("target").innerHTML = JSON.stringify(targets,null,2);
           document.getElementById("readout").innerHTML = JSON.stringify(records,null,2 );
+          document.getElementById("mapped").innerHTML = JSON.stringify(mapped,null,2 );
         } else {
           // Helper returned a null value. It means that not all
           // required columns were mapped.
