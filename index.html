@@ -38,7 +38,7 @@
         document.getElementById("mapped").innerHTML = JSON.stringify(mapped, null, 2);
 
         var traceResult = {
-          x: mResults.map(obj => Date.parse(obj.Date)),
+          x: mResults.map(obj => obj.Date),
           y: mResults.map(obj => obj.Result),
           type: 'bar',
         };
