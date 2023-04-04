@@ -6,11 +6,13 @@
     <!-- Include Plotly.js library -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
+    <script src="https://cdnjs.com/libraries/Chart.js"></script>
   </head>
 
   <body>
     <!-- Create a container element for the chart -->
     <div id="myDiv"></div>
+    <div id="chartjs"></div>
     <script>
       // Wait for the Grist API to be ready
       grist.ready({
@@ -61,6 +63,31 @@
 
           let data = [traceResult, traceTarget];
           Plotly.newPlot("myDiv", data, layout, config);
+
+          var ctx = document.getElementById("chartjs").getContext("2d");
+          var chart = new Chart(ctx, {
+            type: "line",
+            data: {
+              labels: [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+              ],
+              datasets: [
+                {
+                  label: "My First Dataset",
+                  data: [0, 10, 5, 2, 20, 30, 45],
+                  borderColor: "rgb(255, 99, 132)",
+                  tension: 0.1,
+                },
+              ],
+            },
+            options: {},
+          });
         } else {
           // Helper returned a null value. It means that not all
           // required columns were mapped.
