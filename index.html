@@ -70,15 +70,7 @@
           new Chart(ctx, {
             type: "line",
             data: {
-              labels: [
-                "January",
-                "February",
-                "March",
-                "April",
-                "May",
-                "June",
-                "July",
-              ],
+              labels: mResults.map(x => x.Date),
               datasets: [
                 {
                   label: "My First Dataset",
