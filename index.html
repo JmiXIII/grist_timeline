@@ -11,7 +11,7 @@
 
   <body>
     <!-- Create a container element for the chart -->
-    <div class="chart-container" style="position: relative;">
+    <div class="chart-container" style="position: relative">
       <canvas id="myChart"></canvas>
     </div>
     +
@@ -69,10 +69,11 @@
           Plotly.newPlot("myDiv", data, layout, config);
 
           let ctx = document.getElementById("myChart");
-          let cDate=mResults.map(x => x.Date);
-          let cResult=mResults.map(x => x.Result)
+          let cDate = mResults.map((x) => x.Date);
+          let cResult = mResults.map((x) => x.Result);
           new Chart(ctx, {
             type: "bar",
+            option: { maintainAspectRatio: false },
             data: {
               labels: cDate,
               datasets: [
