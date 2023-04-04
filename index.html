@@ -17,6 +17,15 @@
         columns: ["Date", "Result", "Target"],
         requiredAccess: "read table",
       });
+
+      const plotDiv = document.getElementById("myDiv");
+
+      // Set the height and width of the Plotly chart to match the iframe
+      const layout = {
+        height: myDiv.clientHeight,
+        width: myDiv.clientWidth
+      };
+
       // When a new record is selected in the Grist table, render a chart based on its data
       grist.onRecords(function (records, mappings) {
         let mapped = grist.mapColumnNames(records);
@@ -38,7 +47,7 @@
           };
 
           let data = [traceResult, traceTarget];
-          Plotly.newPlot("myDiv", data);
+          Plotly.newPlot("myDiv", data,layout);
         } else {
           // Helper returned a null value. It means that not all
           // required columns were mapped.
