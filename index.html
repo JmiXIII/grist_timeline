@@ -1,65 +1,50 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>My Grist Chart Widget</title>
+    <!-- Include Plotly.js library -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <title>My Grist Chart Widget</title>
-  <!-- Include Plotly.js library -->
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.1/lodash.min.js"></script>
-</head>
+  <body>
+    <!-- Create a container element for the chart -->
+    <div id="myDiv"></div>
+    <script>
+      // Wait for the Grist API to be ready
+      grist.ready({
+        columns: ["Date", "Result", "Target"],
+        requiredAccess: "read table",
+      });
+      // When a new record is selected in the Grist table, render a chart based on its data
+      grist.onRecords(function (records, mappings) {
+        let mapped = grist.mapColumnNames(records);
+        if (mapped) {
+          // mJson = mapped Json from mapped column
+          let mResults = mapped.map(({ Result, Date }) => ({ Result, Date }));
+          let mTargets = mapped.map(({ Target, Date }) => ({ Target, Date }));
+          mTargets.sort((a,b)=>{return a.Date - b.Date})
 
-<body>
-  <!-- Create a container element for the chart -->
-  <div id="myDiv"></div>
-  <pre id="readout">Waiting for data...</pre>
-  <pre id="target">waiting for target data</pre>
-  <pre id="result">waiting for result data</pre>
-  <pre id="mapped">mapped info</pre>
-  <script>
-    // Wait for the Grist API to be ready
-    grist.ready({
-      columns: ["Date", "Result", "Target"],
-      requiredAccess: "read table",
-    });
-    // When a new record is selected in the Grist table, render a chart based on its data
-    grist.onRecords(function (records, mappings) {
-      var mapped = grist.mapColumnNames(records);
-      if (mapped) {
-        datas = JSON.stringify(records, null, 2);
-        var mResults = mapped.map(({ Result, Date }) => ({ Result, Date }));
-        var mTargets = mapped.map(({ Target, Date }) => ({ Target, Date }));
-        targets = records.map(({ Date, Target }) => ({ Date, Target }));
-        results = records.map(({ Date, Result }) => ({ Date, Result }));
-        document.getElementById("result").innerHTML = JSON.stringify(mResults, null, 2);
-        document.getElementById("target").innerHTML = JSON.stringify(mTargets, null, 2);
-        document.getElementById("readout").innerHTML = JSON.stringify(records, null, 2);
-        document.getElementById("mapped").innerHTML = JSON.stringify(mapped, null, 2);
+          let traceResult = {
+            x: mResults.map((obj) => obj.Date),
+            y: mResults.map((obj) => obj.Result),
+            type: "bar",
+          };
+          let traceTarget = {
+            x: mTargets.map((obj) => obj.Date),
+            y: mTargets.map((obj) => obj.Target),
+            type: "scatter",
+          };
 
-        var traceResult = {
-          x: mResults.map(obj => obj.Date),
-          y: mResults.map(obj => obj.Result),
-          type: "bar",
-        };
-        var traceTarget = {
-          x: mTargets.map(obj => obj.Date),
-          y: mTargets.map(obj => obj.Target),
-          type: "scatter",
-        };
-
-        console.log("=============> ", traceResult);
-        // console.log("=============> ", mResults.map(obj => obj.Result));
-        var data = [traceResult,traceTarget];
-        Plotly.newPlot('myDiv', data);
-
-      } else {
-        // Helper returned a null value. It means that not all
-        // required columns were mapped.
-        console.error("Please map all columns");
-      }
-    });
-  </script>
-</body>
-
+          let data = [traceResult, traceTarget];
+          Plotly.newPlot("myDiv", data);
+        } else {
+          // Helper returned a null value. It means that not all
+          // required columns were mapped.
+          console.error("Please map all columns");
+        }
+      });
+    </script>
+  </body>
 </html>
