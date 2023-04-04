@@ -11,7 +11,7 @@
 
   <body>
     <!-- Create a container element for the chart -->
-    <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+    <div class="chart-container" style="position: relative;">
       <canvas id="myChart"></canvas>
     </div>
 
@@ -66,7 +66,7 @@
           let data = [traceResult, traceTarget];
           // Plotly.newPlot("myDiv", data, layout, config);
 
-          const ctx = document.getElementById("myChart");
+          let ctx = document.getElementById("myChart");
           new Chart(ctx, {
             type: "bar",
             data: {
