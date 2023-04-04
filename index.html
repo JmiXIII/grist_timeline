@@ -12,6 +12,7 @@
   <body>
     <!-- Create a container element for the chart -->
     <div id="myDiv"></div>
+    +
     <div id="chartjs"></div>
     <script>
       // Wait for the Grist API to be ready
@@ -62,7 +63,7 @@
           };
 
           let data = [traceResult, traceTarget];
-          Plotly.newPlot("myDiv", data, layout, config);
+          // Plotly.newPlot("myDiv", data, layout, config);
 
           var ctx = document.getElementById("chartjs").getContext("2d");
           var chart = new Chart(ctx, {
