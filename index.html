@@ -69,14 +69,16 @@
           Plotly.newPlot("myDiv", data, layout, config);
 
           let ctx = document.getElementById("myChart");
+          let cDate=mResults.map(x => x.Date);
+          let cResult=mResults.map(s => x.Result)
           new Chart(ctx, {
             type: "bar",
             data: {
-              labels: mResults.map(x => x.Date),
+              labels: cDate,
               datasets: [
                 {
                   label: "My First Dataset",
-                  data: mResults.map(x => x.Result),
+                  data: cResult,
                   borderColor: "rgb(255, 99, 132)",
                 },
               ],
