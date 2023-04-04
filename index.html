@@ -65,8 +65,8 @@
           let data = [traceResult, traceTarget];
           // Plotly.newPlot("myDiv", data, layout, config);
 
-          var ctx = document.getElementById("chartjs");
-          var chart = new Chart(ctx, {
+          const ctx = document.getElementById("chartjs");
+          new chart ({
             type: "line",
             data: {
               labels: [
@@ -83,7 +83,6 @@
                   label: "My First Dataset",
                   data: [0, 10, 5, 2, 20, 30, 45],
                   borderColor: "rgb(255, 99, 132)",
-                  tension: 0.1,
                 },
               ],
             },
