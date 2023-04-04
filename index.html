@@ -65,7 +65,7 @@
           let data = [traceResult, traceTarget];
           // Plotly.newPlot("myDiv", data, layout, config);
 
-          var ctx = document.getElementById("chartjs").getContext("2d");
+          var ctx = document.getElementById("chartjs");
           var chart = new Chart(ctx, {
             type: "line",
             data: {
