@@ -30,9 +30,6 @@
           t: 5,
           pad: 0,
         },
-        markers:{
-          color:'rgba(184,184,184,0.6)',
-        }
       };
 
       const config = {
@@ -57,6 +54,9 @@
             y: mResults.map((obj) => obj.Result),
             type: "bar",
             opacity: 0.7,
+            markers: {
+              color: "rgba(184,184,184,0.6)",
+            },
           };
           let traceTarget = {
             x: mTargets.map((obj) => obj.Date),
