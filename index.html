@@ -25,7 +25,7 @@
       const plotDiv = document.getElementById("myDiv");
 
       // Set the height and width of the Plotly chart to match the iframe
-      // const layout = {
+      const layout = {
       //   autosize: true,
       //   margin: {
       //     l: 5,
@@ -34,7 +34,7 @@
       //     t: 5,
       //     pad: 0,
       //   },
-      // };
+      };
 
       const config = {
         displayModeBar: false, // this is the line that hides the bar.
@@ -64,7 +64,7 @@
           };
 
           let data = [traceResult, traceTarget];
-          Plotly.newPlot("myDiv", data, config);
+          Plotly.newPlot("myDiv", data, layout, config);
         } else {
           // Helper returned a null value. It means that not all
           // required columns were mapped.
