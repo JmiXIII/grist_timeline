@@ -6,9 +6,6 @@
     <!-- Include Plotly.js library -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.2/echarts.min.js" integrity="sha512-VdqgeoWrVJcsDXFlQEKqE5MyhaIgB9yXUVaiUa8DR2J4Lr1uWcFm+ZH/YnzV5WqgKf4GPyHQ64vVLgzqGIchyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
   </head>
 
   <body>
@@ -28,7 +25,6 @@
       const layout = {
         autosize: true,
         margin: {
-          l: 5,
           r: 5,
           t: 5,
           pad: 0,
@@ -47,6 +43,7 @@
           // mJson = mapped Json from mapped column
           let mResults = mapped.map(({ Result, Date }) => ({ Result, Date }));
           let mTargets = mapped.map(({ Target, Date }) => ({ Target, Date }));
+          // sorting by Date
           mTargets.sort((a, b) => {
             return a.Date - b.Date;
           });
