@@ -13,12 +13,8 @@
 
   <body>
     <!-- Create a container element for the chart -->
-    <!-- <div class="chart-container" style="position: relative">
-      <canvas id="myChart">Chartjs</canvas>
-    </div> -->
-    +
-    <div id="myDiv">Plotly</div>
-
+    <div id="myDiv" style="position: relative;"></div>
+    
     <script>
       // Wait for the Grist API to be ready
       grist.ready({
@@ -69,28 +65,6 @@
 
           let data = [traceResult, traceTarget];
           Plotly.newPlot("myDiv", data, layout, config);
-// echarts 
-
-// 
-// 
-          // let ctx = document.getElementById("myChart");
-          // let cDate = mResults.map((x) => x.Date);
-          // let cResult = mResults.map((x) => x.Result);
-          // new Chart(ctx, {
-          //   type: "bar",
-          //   option: { maintainAspectRatio: false },
-          //   data: {
-          //     labels: cDate,
-          //     datasets: [
-          //       {
-          //         label: "My First Dataset",
-          //         data: cResult,
-          //         borderColor: "rgb(255, 99, 132)",
-          //       },
-          //     ],
-          //   },
-          //   options: {  maintainAspectRatio: false,},
-          // });
         } else {
           // Helper returned a null value. It means that not all
           // required columns were mapped.
