@@ -17,7 +17,7 @@
       <canvas id="myChart">Chartjs</canvas>
     </div> -->
     +
-    <div id="myDiv" style="width: 100%;height: 100vh;">Plotly</div>
+    <div id="myDiv">Plotly</div>
 
     <script>
       // Wait for the Grist API to be ready
@@ -31,10 +31,17 @@
       // Set the height and width of the Plotly chart to match the iframe
       const layout = {
         autosize: true,
+        margin: {
+          l: 5,
+          r: 5,
+          b: 5,
+          t: 5,
+          pad: 0,
+        },
       };
 
       const config = {
-        displayModeBar: true, // this is the line that hides the bar.
+        displayModeBar: false, // this is the line that hides the bar.
         responsive: true,
       };
 
