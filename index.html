@@ -6,16 +6,18 @@
     <!-- Include Plotly.js library -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.2/echarts.min.js" integrity="sha512-VdqgeoWrVJcsDXFlQEKqE5MyhaIgB9yXUVaiUa8DR2J4Lr1uWcFm+ZH/YnzV5WqgKf4GPyHQ64vVLgzqGIchyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
   </head>
 
   <body>
     <!-- Create a container element for the chart -->
-    <div class="chart-container" style="position: relative">
-      <canvas id="myChart"></canvas>
-    </div>
+    <!-- <div class="chart-container" style="position: relative">
+      <canvas id="myChart">Chartjs</canvas>
+    </div> -->
     +
-    <div id="myDiv"></div>
+    <div id="myDiv" style="width: 100%;height: 100vh;">Plotly</div>
 
     <script>
       // Wait for the Grist API to be ready
@@ -60,25 +62,28 @@
 
           let data = [traceResult, traceTarget];
           Plotly.newPlot("myDiv", data, layout, config);
+// echarts 
 
-          let ctx = document.getElementById("myChart");
-          let cDate = mResults.map((x) => x.Date);
-          let cResult = mResults.map((x) => x.Result);
-          new Chart(ctx, {
-            type: "bar",
-            option: { maintainAspectRatio: false },
-            data: {
-              labels: cDate,
-              datasets: [
-                {
-                  label: "My First Dataset",
-                  data: cResult,
-                  borderColor: "rgb(255, 99, 132)",
-                },
-              ],
-            },
-            options: {},
-          });
+// 
+// 
+          // let ctx = document.getElementById("myChart");
+          // let cDate = mResults.map((x) => x.Date);
+          // let cResult = mResults.map((x) => x.Result);
+          // new Chart(ctx, {
+          //   type: "bar",
+          //   option: { maintainAspectRatio: false },
+          //   data: {
+          //     labels: cDate,
+          //     datasets: [
+          //       {
+          //         label: "My First Dataset",
+          //         data: cResult,
+          //         borderColor: "rgb(255, 99, 132)",
+          //       },
+          //     ],
+          //   },
+          //   options: {  maintainAspectRatio: false,},
+          // });
         } else {
           // Helper returned a null value. It means that not all
           // required columns were mapped.
