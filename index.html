@@ -23,6 +23,9 @@
 
       // Set the height and width of the Plotly chart to match the iframe
       const layout = {
+        title:{
+          automargin: true,
+        },
         autosize: true,
         yaxis:{
           tcikmode:"auto",
@@ -56,6 +59,7 @@
             x: mResults.map((obj) => obj.Date),
             y: mResults.map((obj) => obj.Result),
             type: "bar",
+            name: "Résultats"
             opacity: 0.7,
             marker: {
               color: "rgba(184,184,184,0.6)",
@@ -65,6 +69,7 @@
             x: mTargets.map((obj) => obj.Date),
             y: mTargets.map((obj) => obj.Target),
             type: "scatter",
+            name: "Objectif"
           };
 
           let data = [traceResult, traceTarget];
