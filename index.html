@@ -15,7 +15,7 @@
     <script>
       // Wait for the Grist API to be ready
       grist.ready({
-        columns: ["Date", "Result", "Target"],
+        columns: ["Date", "Result", "Target","Mean"],
         requiredAccess: "read table",
       });
 
@@ -54,10 +54,14 @@
           // mJson = mapped Json from mapped column
           let mResults = mapped.map(({ Result, Date }) => ({ Result, Date }));
           let mTargets = mapped.map(({ Target, Date }) => ({ Target, Date }));
+          let mMeans = mapped.map(({ Mean, Date }) => ({ Mean, Date }));
           // sorting by Date
           mTargets.sort((a, b) => {
             return a.Date - b.Date;
           });
+          mMeans.sort((a,b) => {
+            return a.Date-b.Date;
+          })
 
           let traceResult = {
             x: mResults.map((obj) => obj.Date),
@@ -75,6 +79,14 @@
             type: "scatter",
             name: "Objectif",
           };
+
+          let result_Glissant = {
+            x: mMeans.map((obj) => obj.Date),
+            y: mMeans.map((obj) => obj.Target),
+            type: "scatter",
+            name: "12 Mois Glissant",
+          };
+
 
           let data = [traceResult, traceTarget];
           Plotly.newPlot("myDiv", data, layout, config);
