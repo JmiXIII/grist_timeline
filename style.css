@@ -1,168 +1,137 @@
-﻿@import url(https://fonts.googleapis.com/css?family=PT+Sans);
-
-body {
+﻿body,
+html {
+    padding: 0;
     margin: 0;
-    font-family: PT Sans, sans-serif;
-    background-color: #fcfcfc;
-    color: #000;
+    font-family: Calibri, Helvetica, Arial, sans-serif;
+    letter-spacing: 0.04em;
 }
 
 .container {
-    margin: 3rem 0;
-    width: 100%;
+    max-width: 1980px;
+    margin: 0 auto;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+ul.timeline {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px 30px;
+}
+
+ul.timeline>li {
+    width: calc(100% / 6);
+}
+
+ul.timeline>li:nth-of-type(odd)>.content {
+    transform: translateY(calc(-100% - 24px));
+}
+
+ul .year {
+    color: #ffd402;
+    background: #3f444c;
+    display: block;
     position: relative;
-    overflow-x: scroll;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-left: 24px;
+    line-height: 24px;
+    font-weight: bold;
+    font-size: 18px;
 }
 
-.container::-webkit-scrollbar {
-    height: 45px;
-}
-
-.container::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    background-clip: content-box;
-    border-radius: 100%;
-    border: 20px solid transparent;
-}
-
-.entries {
-    margin-right: -10000px;
-    margin-left: 1rem;
-}
-
-.timeline {
-    position: fixed;
-    box-sizing: border-box;
-    width: 100%;
-    height: 0.7rem;
-    background-color: beige;
-    background-clip: content-box;
-    border-width: 0.2rem 0;
-    border-style: solid;
-    border-color: #fff;
-    box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.1), inset 0 0 0.4em rgba(0, 0, 0, 0.1);
-}
-
-.entry {
-    float: left;
-    max-width: 170px;
-    position: relative;
-    text-align: center;
-    margin: 0 1rem;
-    margin-top: 0.7rem;
-}
-
-.entry .dot {
+ul .year::before {
+    content: "";
+    width: 40px;
+    height: 40px;
     position: absolute;
-    width: 1.2rem;
-    height: 1.2rem;
-    background-color: powderblue;
-    left: 50%;
-    margin-left: -0.6rem;
-    margin-top: -0.95rem;
-    border-radius: 100%;
+    background: #ffd402;
+    border-radius: 50%;
+    left: -24px;
+    top: calc((40 - 24) / 2 * -1px);
+}
+
+ul .year.new {
+    border-radius: 0 24px 24px 0;
+}
+
+ul .year.new::after {
+    content: "";
+    width: 5px;
+    height: 5px;
+    display: block;
+    border: 20px solid #3f444c;
     box-sizing: border-box;
-    background-clip: content-box;
-    border-width: 0.16rem;
-    border-style: solid;
-    border-color: #fff;
-    box-shadow: 0 0.1rem 1rem 0 rgba(0, 0, 0, 0.1), inset 0 0 0.4em rgba(255, 255, 255, 0.1), inset 0 0.4rem 0.1rem rgba(255, 255, 255, 0.3);
-    -moz-transition: height 0.2s linear, width 0.2s linear, margin 0.2s linear, background-color 0.3s ease-out;
-    -o-transition: height 0.2s linear, width 0.2s linear, margin 0.2s linear, background-color 0.3s ease-out;
-    -webkit-transition: height 0.2s linear, width 0.2s linear, margin 0.2s linear, background-color 0.3s ease-out;
-    transition: height 0.2s linear, width 0.2s linear, margin 0.2s linear, background-color 0.3s ease-out;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    position: absolute;
+    right: -30px;
+    top: -9.5px;
 }
 
-.entry:hover .dot {
-    width: 1.6rem;
-    height: 1.6rem;
-    margin-left: -0.8rem;
-    margin-top: -1.15rem;
-    background-color: thistle;
+ul .content {
+    border-left: 8px solid #ffd402;
+    margin-left: -8px;
+    padding: 15px 0;
+    padding-right: 24px;
 }
 
-.entry:hover .label {
-    margin-top: 2.5rem;
-    background-color: #d0e8e4;
-    border-bottom: 0.5rem solid transparent;
-}
-
-.label {
-    display: inline-block;
+ul .content>li {
+    padding-left: 20px;
+    border-bottom: 4px solid #eef4f7;
+    padding-bottom: 8px;
     position: relative;
-    background-color: #e1f0ee;
-    background-clip: padding-box;
-    margin-top: 3rem;
-    padding: 0.4rem 0.8rem 0.8rem;
-    border-radius: 0.2rem;
-    -moz-transition: margin-top 0.2s linear, background-color 0.2s linear, border-bottom 0.2s linear;
-    -o-transition: margin-top 0.2s linear, background-color 0.2s linear, border-bottom 0.2s linear;
-    -webkit-transition: margin-top 0.2s linear, background-color 0.2s linear, border-bottom 0.2s linear;
-    transition: margin-top 0.2s linear, background-color 0.2s linear, border-bottom 0.2s linear;
-    border-bottom: 0 solid transparent;
+    margin-left: -8px;
 }
 
-.label .time {
-    text-transform: uppercase;
-    font-size: 0.7rem;
-    margin: 0 0 0.4rem;
-    padding: 0 0.3rem 0.3rem;
-    letter-spacing: 1px;
-    display: inline-block;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+ul .content>li:last-of-type {
+    border-bottom: 0;
+    padding-bottom: 0;
 }
 
-.label .detail {
-    font-size: 0.8rem;
-}
-
-.label:before {
+ul .content>li::before {
     content: "";
     display: block;
     position: absolute;
-    background-color: inherit;
-    background-clip: content-box;
-    box-sizing: border-box;
-    width: 1rem;
-    height: 1rem;
-    left: 50%;
-    margin-top: -0.9rem;
-    margin-left: -0.5rem;
-    transform-origin: center;
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-    z-index: -1;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #eef4f7;
+    left: 2px;
+    top: 8px;
 }
 
-.label a {
-    color: #000;
-    text-decoration: none;
+@media screen and (max-width: 1140px) {
+    ul.timeline>li {
+        width: calc(100% / 4);
+    }
 }
 
-.label a:before {
-    content: "[";
+@media screen and (max-width: 991px) {
+    ul.timeline>li {
+        width: calc(100% / 2);
+    }
 }
 
-.label a:after {
-    content: "]";
-}
+@media screen and (max-width: 767px) {
+    ul.timeline {
+        display: block;
+    }
 
-.entry.life .label {
-    background-color: #e1f0e4;
-}
+    ul.timeline>li {
+        width: 100%;
+    }
 
-.entry.life:hover .label {
-    background-color: #d0e8d5;
-}
-
-.entry.study .label {
-    background-color: #e1e8f0;
-}
-
-.entry.study:hover .label {
-    background-color: #d0dbe8;
+    ul.timeline>li:nth-of-type(odd) .content {
+        transform: none;
+    }
 }

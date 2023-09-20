@@ -4,140 +4,119 @@
     <meta charset="utf-8" />
     <title>My Grist Chart Widget</title>
     <!-- Include Plotly.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
-    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
-
   <body>
-    test
-
     <div class="container">
-      <div class="timeline">
-        <div class="start"></div>
-      </div>
-      <div class="entries">
-        <div class="entry project">
-          <div class="dot"></div>
-          <div class="label">
-            <div class="time">April 2013</div>
-            <div class="detail">
-              Launched <a href="https://youtube.com/charbytes">Charbytes</a>
-            </div>
-          </div>
-        </div>
-        <div class="entry study">
-          <div class="dot"></div>
-          <div class="label">
-            <div class="time">September 2012</div>
-            <div class="detail">Began Silversmithing degree @ London Met</div>
-          </div>
-        </div>
-        <div class="entry project">
-          <div class="dot"></div>
-          <div class="label">
-            <div class="time">July 2012</div>
-            <div class="detail">
-              Launched
-              <a href="http://pentatopejewellery.com">Pentatope</a> Jewellery
-            </div>
-          </div>
-        </div>
-        <div class="entry study">
-          <div class="dot"></div>
-          <div class="label">
-            <div class="time">September 2011</div>
-            <div class="detail">
-              Started Foundation degree @ Central Saint Martins
-            </div>
-          </div>
-        </div>
-        <div class="entry life">
-          <div class="dot"></div>
-          <div class="label">
-            <div class="time">June 2011</div>
-            <div class="detail">Left School</div>
-          </div>
-        </div>
-        <div class="entry project">
-          <div class="dot"></div>
-          <div class="label">
-            <div class="time">May 2010</div>
-            <div class="detail">
-              Released first tumblr theme
-              <a
-                href="http://pouretrebelle.com/post/563994536/ive-made-my-first-real-theme"
-                title="no this is really bad don't click on it"
-                >Belle</a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="entry project">
-          <div class="dot"></div>
-          <div class="label">
-            <div class="time">September 2009</div>
-            <div class="detail">
-              Started
-              <a href="http://pouretrebelle.com">Pour &Ecirc;tre Belle</a>
-            </div>
-          </div>
-        </div>
-        <div class="entry life">
-          <div class="dot"></div>
-          <div class="label">
-            <div class="time">November 2005</div>
-            <div class="detail">Moved To Bath</div>
-          </div>
-        </div>
-        <div class="entry life">
-          <div class="dot"></div>
-          <div class="label">
-            <div class="time">July 1993</div>
-            <div class="detail">Born In Buckinghamshire</div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <ul class="timeline">
+        <li>
+          <span class="year">S38</span>
+          <ul class="content">
+            <li>dignissimos quae quas mollitia velit rerum sit quo!</li>
+            <li>2008-2</li>
+            <li>2008-3</li>
 
+          </ul>
+        </li>
+        <li>
+          <span class="year">S39</span>
+          <ul class="content">
+            <li>2009-1 Chouette</li> 
+            <li>2009-2</li>
+            <li>2009-3</li>
+          </ul>
+        </li>
+        <li>
+          <span class="year">S40</span>
+          <ul class="content">
+            <li>2010-1</li>
+            <li>2010-2</li>
+            <li>2010-3</li>
+          </ul>
+        </li>
+        <li>
+          <span class="year">S41</span>
+          <ul class="content">
+            <li>2011-1</li>
+            <li>2011-2</li>
+            <li>2011-3</li>
+            <li>officia aliquid minima enim eaque quam!</li>
+          </ul>
+        </li>
+        <li>
+          <span class="year">S42</span>
+          <ul class="content">
+            <li>2012-1</li>
+            <li>2012-2</li>
+            <li>2012-3</li>
+          </ul>
+        </li>
+        <li>
+          <span class="year">2013</span>
+          <ul class="content">
+            <li>2013-1</li>
+            <li>2013-2</li>
+            <li>2013-3</li>
+          </ul>
+        </li>
+        <li>
+          <span class="year">2014</span>
+          <ul class="content">
+            <li>2014-1</li>
+            <li>2014-2</li>
+            <li>2014-3</li>
+          </ul>
+        </li>
+        <li>
+          <span class="year">2015</span>
+          <ul class="content">
+            <li>2015-1</li>
+            <li>2015-2</li>
+            <li>2015-3</li>
+          </ul>
+        </li>
+        <li>
+          <span class="year">2016</span>
+          <ul class="content">
+            <li>2016-1</li>
+            <li>2016-2</li>
+            <li>2016-3</li>
+          </ul>
+        </li>
+        <li><span class="year new">Sustained Growth</span></li>
+      </ul>
+    </div>
     <script>
+
+(function() {
+  $(window).on('load resize', function() {
+    if ($(this).width() < 767) {
+      return $('.timeline > li').css('margin-top', '');
+    } else {
+      return $('.timeline > li').css('margin-top', $('.timeline > li').height());
+    }
+  });
+
+  
+  // 純 CSS pseudo-element 會參考寬度變化，以 JS 代替
+
+}).call(this);
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiPGFub255bW91cz4iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFBQSxDQUFBLENBQUUsTUFBRixDQUFTLENBQUMsRUFBVixDQUFhLGFBQWIsRUFBNEIsUUFBQSxDQUFBLENBQUE7SUFDM0IsSUFBRyxDQUFBLENBQUUsSUFBRixDQUFPLENBQUMsS0FBUixDQUFBLENBQUEsR0FBa0IsR0FBckI7YUFDQyxDQUFBLENBQUUsZ0JBQUYsQ0FBbUIsQ0FBQyxHQUFwQixDQUF3QixZQUF4QixFQUFzQyxFQUF0QyxFQUREO0tBQUEsTUFBQTthQUdDLENBQUEsQ0FBRSxnQkFBRixDQUFtQixDQUFDLEdBQXBCLENBQXdCLFlBQXhCLEVBQXNDLENBQUEsQ0FBRSxnQkFBRixDQUFtQixDQUFDLE1BQXBCLENBQUEsQ0FBdEMsRUFIRDs7RUFEMkIsQ0FBNUI7O0VBQUE7O0FBQUEiLCJzb3VyY2VzQ29udGVudCI6WyIkKHdpbmRvdykub24gJ2xvYWQgcmVzaXplJywgLT5cblx0aWYgJCh0aGlzKS53aWR0aCgpIDwgNzY3XG5cdFx0JCgnLnRpbWVsaW5lID4gbGknKS5jc3MgJ21hcmdpbi10b3AnLCAnJ1xuXHRlbHNlXG5cdFx0JCgnLnRpbWVsaW5lID4gbGknKS5jc3MgJ21hcmdpbi10b3AnLCAkKCcudGltZWxpbmUgPiBsaScpLmhlaWdodCgpXG5cdFx0XG4jIOe0lCBDU1MgcHNldWRvLWVsZW1lbnQg5pyD5Y+D6ICD5a+s5bqm6K6K5YyW77yM5LulIEpTIOS7o+abvyJdfQ==
+//# sourceURL=coffeescript
+
+
+
       // Wait for the Grist API to be ready
       grist.ready({
-        columns: ["Evenement", "Statut", "Description", "Date"],
+        columns: ["Date", "Result", "Target", "Mean"],
         requiredAccess: "read table",
       });
 
       const plotDiv = document.getElementById("myDiv");
-
-      // Set the height and width of the Plotly chart to match the iframe
-      const layout = {
-        title: {
-          automargin: true,
-        },
-        legend: {
-          xanchor: "right",
-          yanchor: "top",
-          bgcolor: "rgba(0,0,0,0.15)",
-          font: {
-            size: 10,
-          },
-        },
-        autosize: true,
-        yaxis: {
-          tickmode: "auto",
-        },
-        margin: {
-          l: 30,
-          r: 5,
-          t: 5,
-          pad: 0,
-        },
-      };
-
-      const config = {
-        displayModeBar: false, // this is the line that hides the bar.
-        responsive: true,
-      };
 
       // When a new record is selected in the Grist table, render a chart based on its data
       grist.onRecords(function (records, mappings) {
@@ -154,37 +133,6 @@
           mMeans.sort((a, b) => {
             return a.Date - b.Date;
           });
-
-          let traceResult = {
-            x: mResults.map((obj) => obj.Date),
-            y: mResults.map((obj) => obj.Result),
-            type: "bar",
-            name: "Résultats",
-            opacity: 0.7,
-            marker: {
-              color: "rgba(184,184,184,0.6)",
-            },
-          };
-          let traceTarget = {
-            x: mTargets.map((obj) => obj.Date),
-            y: mTargets.map((obj) => obj.Target),
-            type: "scatter",
-            name: "Objectif",
-          };
-
-          let traceMean = {
-            x: mMeans.map((obj) => obj.Date),
-            y: mMeans.map((obj) => obj.Mean),
-            type: "line",
-            name: "12 Mois Glissants",
-          };
-
-          let data = [traceResult, traceTarget, traceMean];
-          Plotly.newPlot("myDiv", data, layout, config);
-        } else {
-          // Helper returned a null value. It means that not all
-          // required columns were mapped.
-          console.error("Please map all columns");
         }
       });
     </script>
