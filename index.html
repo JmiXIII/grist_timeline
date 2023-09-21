@@ -109,30 +109,10 @@
       //# sourceURL=coffeescript
 
       // Wait for the Grist API to be ready
-      grist.ready({
-        columns: ["html"],
-        requiredAccess: "read table",
+      grist.ready({ requiredAccess: "read table" });
+      grist.onRecord(function (record) {
+        document.getElementById("myDiv").innerHTML = record.html;
       });
-
-      // When a new record is selected in the Grist table, render a chart based on its data
-      grist.onRecords(function (records, mappings) {
-        document.getElementById("myDiv").innerHTML=records.html;
-        let mapped = grist.mapColumnNames(records);
-        if (mapped) {
-          // mJson = mapped Json from mapped column
-          let mResults = mapped.map(({ Result, Date }) => ({ Result, Date }));
-          let mTargets = mapped.map(({ Target, Date }) => ({ Target, Date }));
-          let mMeans = mapped.map(({ Mean, Date }) => ({ Mean, Date }));
-          // sorting by Date
-          mTargets.sort((a, b) => {
-            return a.Date - b.Date;
-          });
-          mMeans.sort((a, b) => {
-            return a.Date - b.Date;
-          });
-        }
-      });
-
     </script>
   </body>
 </html>
