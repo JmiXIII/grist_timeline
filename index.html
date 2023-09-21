@@ -116,6 +116,7 @@
 
       // When a new record is selected in the Grist table, render a chart based on its data
       grist.onRecords(function (records, mappings) {
+        document.getElementById("myDiv").innerHTML=records.html;
         let mapped = grist.mapColumnNames(records);
         if (mapped) {
           // mJson = mapped Json from mapped column
@@ -131,7 +132,7 @@
           });
         }
       });
-      document.getElementById("myDiv").innerHTML="test";
+
     </script>
   </body>
 </html>
