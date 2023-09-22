@@ -97,10 +97,7 @@
       });
       (function () {
         $(window).on("load resize", function () {
-          return $(".timeline > li").css(
-            "margin-top",
-            $(".timeline > li").height()
-          );
+          return $('.timeline > li').css('margin-top', '');
         });
 
         // 純 CSS pseudo-element 會參考寬度變化，以 JS 代替
