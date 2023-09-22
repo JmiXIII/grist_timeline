@@ -99,7 +99,7 @@
 
       (function () {
         $(window).on("load resize", function () {
-          if ($(this).width() > 767) {
+          if ($(this).width() < 300) {
             return $(".timeline > li").css("margin-top", "");
           } else {
             return $(".timeline > li").css(
