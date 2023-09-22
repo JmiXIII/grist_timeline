@@ -1,20 +1,16 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <title>My Grist Chart Widget</title>
-  <!-- Include Plotly.js library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
-  <link rel="stylesheet" type="text/css" href="style.css" />
-</head>
-
-<body>
-  <div id="myDiv" class="timeline">
-    <li>pfff</li>
-  </div>
-  <!-- <div>
+  <head>
+    <meta charset="utf-8" />
+    <title>My Grist Chart Widget</title>
+    <!-- Include Plotly.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div id="myDiv" class="timeline"><li>pfff</li></div>
+    <!-- <div>
     <div class="container">
       <ul class="timeline">
         <li>
@@ -93,11 +89,10 @@
         <li><span class="year new">Sustained Growth</span></li>
       </ul>
     </div> -->
-  <script>
-    // Wait for the Grist API to be ready
-    grist.ready({
-      requiredAccess: "read table"
-        (function () {
+    <script>
+      // Wait for the Grist API to be ready
+      grist.ready({ requiredAccess: "read table" });
+      (function () {
           $(window).on("load resize", function () {
             return $(".timeline > li").css(
               "margin-top",
@@ -105,11 +100,11 @@
             );
           });
         }).call(this);
-    });
-    grist.onRecord(function (record) {
-      document.getElementById("myDiv").innerHTML = record.html;
-    });
-  </script>
-</body>
+      grist.onRecord(function (record) {
+        document.getElementById("myDiv").innerHTML = record.html;
 
+
+      });
+    </script>
+  </body>
 </html>
