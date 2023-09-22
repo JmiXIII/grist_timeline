@@ -97,20 +97,20 @@
         document.getElementById("myDiv").innerHTML = record.html;
       });
 
-      // (function () {
-      //   $(window).on("load resize", function () {
-      //     if ($(this).width() < 767) {
-      //       return $(".timeline > li").css("margin-top", "");
-      //     } else {
-      //       return $(".timeline > li").css(
-      //         "margin-top",
-      //         $(".timeline > li").height()
-      //       );
-      //     }
-      //   });
+      (function () {
+        $(window).on("load resize", function () {
+          if ($(this).width() > 767) {
+            return $(".timeline > li").css("margin-top", "");
+          } else {
+            return $(".timeline > li").css(
+              "margin-top",
+              $(".timeline > li").height()
+            );
+          }
+        });
 
-      //   // 純 CSS pseudo-element 會參考寬度變化，以 JS 代替
-      // }).call(this);
+        // 純 CSS pseudo-element 會參考寬度變化，以 JS 代替
+      }).call(this);
 
       //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiPGFub255bW91cz4iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFBQSxDQUFBLENBQUUsTUFBRixDQUFTLENBQUMsRUFBVixDQUFhLGFBQWIsRUFBNEIsUUFBQSxDQUFBLENBQUE7SUFDM0IsSUFBRyxDQUFBLENBQUUsSUFBRixDQUFPLENBQUMsS0FBUixDQUFBLENBQUEsR0FBa0IsR0FBckI7YUFDQyxDQUFBLENBQUUsZ0JBQUYsQ0FBbUIsQ0FBQyxHQUFwQixDQUF3QixZQUF4QixFQUFzQyxFQUF0QyxFQUREO0tBQUEsTUFBQTthQUdDLENBQUEsQ0FBRSxnQkFBRixDQUFtQixDQUFDLEdBQXBCLENBQXdCLFlBQXhCLEVBQXNDLENBQUEsQ0FBRSxnQkFBRixDQUFtQixDQUFDLE1BQXBCLENBQUEsQ0FBdEMsRUFIRDs7RUFEMkIsQ0FBNUI7O0VBQUE7O0FBQUEiLCJzb3VyY2VzQ29udGVudCI6WyIkKHdpbmRvdykub24gJ2xvYWQgcmVzaXplJywgLT5cblx0aWYgJCh0aGlzKS53aWR0aCgpIDwgNzY3XG5cdFx0JCgnLnRpbWVsaW5lID4gbGknKS5jc3MgJ21hcmdpbi10b3AnLCAnJ1xuXHRlbHNlXG5cdFx0JCgnLnRpbWVsaW5lID4gbGknKS5jc3MgJ21hcmdpbi10b3AnLCAkKCcudGltZWxpbmUgPiBsaScpLmhlaWdodCgpXG5cdFx0XG4jIOe0lCBDU1MgcHNldWRvLWVsZW1lbnQg5pyD5Y+D6ICD5a+s5bqm6K6K5YyW77yM5LulIEpTIOS7o+abvyJdfQ==
       //# sourceURL=coffeescript
