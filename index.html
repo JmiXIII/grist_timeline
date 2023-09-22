@@ -94,16 +94,16 @@
       grist.ready({ requiredAccess: "read table" });
       grist.onRecord(function (record) {
         document.getElementById("myDiv").innerHTML = record.html;
-      }
-      (function () {
-        $(window).on("load resize", function () {
-          return $(".timeline > li").css(
-            "margin-top",
-            $(".timeline > li").height()
-          );
-        });
-      }).call(this);
-      );
+
+        (function () {
+          $(window).on("load resize", function () {
+            return $(".timeline > li").css(
+              "margin-top",
+              $(".timeline > li").height()
+            );
+          });
+        }).call(this);
+      });
     </script>
   </body>
 </html>
