@@ -92,17 +92,16 @@
     <script>
       // Wait for the Grist API to be ready
       grist.ready({ requiredAccess: "read table" });
+
+      grist.onRecord(function (record) {
+        document.getElementById("myDiv").innerHTML = record.html;
+      });
       (function () {
             return $(".timeline > li").css(
               "margin-top",
               $(".timeline > li").height()
             );
           }).call(this);
-      grist.onRecord(function (record) {
-        document.getElementById("myDiv").innerHTML = record.html;
-
-
-      });
     </script>
   </body>
 </html>
