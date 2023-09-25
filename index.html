@@ -19,7 +19,7 @@
       grist.ready({ requiredAccess: "read table" });
 
       grist.onRecords(function (records) {
-        document.getElementById("myDiv").innerHTML = record.html;
+        document.getElementById("myDiv").innerHTML = records.html;
       });
 
       function adjustMargin() {
