@@ -13,6 +13,15 @@
       <div id="myDiv" class="timeline" onresize="adjustMargin()"><li>pfff</li></div>
     </div>
     <script>
+
+
+      // Wait for the Grist API to be ready
+      grist.ready({ requiredAccess: "read table" });
+
+      grist.onRecord(function (record) {
+        document.getElementById("myDiv").innerHTML = record.html;
+      });
+
       function adjustMargin() {
         if ($(this).width() < 767) {
           return $(".timeline > li").css("margin-top", "");
@@ -23,13 +32,6 @@
           );
         }
       };
-
-      // Wait for the Grist API to be ready
-      grist.ready({ requiredAccess: "read table" });
-
-      grist.onRecord(function (record) {
-        document.getElementById("myDiv").innerHTML = record.html;
-      });
     </script>
   </body>
 </html>
