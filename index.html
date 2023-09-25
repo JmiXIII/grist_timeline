@@ -18,7 +18,7 @@
       // Wait for the Grist API to be ready
       grist.ready({ requiredAccess: "read table" });
 
-      grist.onRecord(function (record) {
+      grist.onRecords(function (records) {
         document.getElementById("myDiv").innerHTML = record.html;
       });
 
