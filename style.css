@@ -7,7 +7,7 @@ html {
 }
 
 .container {
-    max-width: 1140px;
+    max-width: 1980px;
     margin: 0 auto;
 }
 
@@ -110,7 +110,7 @@ ul .content>li::before {
     top: 8px;
 }
 
-@media screen and (max-width: 1140px) {
+@media screen and (max-width: 1980px) {
     ul.timeline>li {
         width: calc(100% / 4);
     }
